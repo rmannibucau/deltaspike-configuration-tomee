@@ -1,0 +1,49 @@
+= DeltaSpike Configuration TomEE Integration
+
+DeltaSpike Configuration is a nice and elegant API to configure a CDI application.
+
+However running in TomEE you will probably miss the integration with TomEE `org.apache.openejb.cipher.PasswordCipher`
+which provides a way to cipher password and sensitive data.
+
+This module brings it up back to DeltaSpike using DeltaSpike `org.apache.deltaspike.core.spi.config.ConfigFilter` API
+to wire all available `PasswordCipher` of the application and the container registered using the standard mecanism
+(`META-INF/org.apache.openejb.resource.jdbc.PasswordCipher/<cipher name>`).
+
+It also supports inline qualified name for ciphers not having this SPI file.
+
+== Dependency
+
+[source,xml]
+----
+<dependency>
+  <groupId>com.github.rmannibucau</groupId>
+  <artifactId>deltaspike-configuration-tomee</artifactId>
+  <version>1.0.0</version>
+  <scope>provided</scope>
+</dependency>
+----
+
+== Usage
+
+
+You can set in deltaspike configuration registry (system properties, META-INF/apache-deltaspike.properties, ${tomee.base}/conf/system.properties...)
+the value you want encoded and prefixed with `cipher:<algorithm or fully qualified class>:<encoded value>`.
+
+For instance:
+
+[source]
+----
+cipher:Static3DES:qrxDWArrKEU=
+----
+
+or
+
+[source]
+----
+cipher:org.apache.openejb.cipher.StaticDESPasswordCipher:qrxDWArrKEU=
+----
+
+Will let you get injected the value `openejb`.
+
+NOTE: default values are not deciphered so you can't use this mecanism (which is generally fine, we rarely hardcode sensitive data).
+
