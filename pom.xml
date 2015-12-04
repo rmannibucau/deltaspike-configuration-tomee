@@ -63,8 +63,8 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
   </build>
 
   <scm>
-    <connection>scm:git:https://github.com/rmannibucau/deltaspike-configuration-tomee.git</connection>
-    <developerConnection>scm:git:https://github.com/rmannibucau/deltaspike-configuration-tomee.git</developerConnection>
+    <connection>scm:svn:https://github.com/rmannibucau/deltaspike-configuration-tomee.git</connection>
+    <developerConnection>scm:svn:https://github.com/rmannibucau/deltaspike-configuration-tomee.git</developerConnection>
     <url>https://github.com/rmannibucau/deltaspike-configuration-tomee.git</url>
   </scm>
 </project>
